@@ -5007,7 +5007,7 @@ local function init(NameConfig)
             index5:Create("UICorner", { Parent = tween3.Instance, CornerRadius = UDim.new(0, 4) })
             local tween4 = index5:Create("ImageLabel", {
                 Parent = tween3.Instance, ImageColor3 = Color3.fromRGB(255, 255, 255), Size = UDim2.new(1, -6, 1, -6),
-                AnchorPoint = Vector2.new(0.5, 0.5), Image = "rbxassetid://" .. (icon or t19.DefaultIcon), BackgroundTransparency = 1,
+                AnchorPoint = Vector2.new(0.5, 0.5), Image = (icon or t19.DefaultIcon), BackgroundTransparency = 1,
                 Position = UDim2.new(0.5, 0, 0.5, 0), ZIndex = 5, ScaleType = Enum.ScaleType.Fit,
             })
             local tween5 = index5:Create("Frame", {
@@ -5442,20 +5442,22 @@ local function init(NameConfig)
                 end
             end
         end
-        t19.Add = function(arg3, arg4, arg5)
+        t19.Add = function(arg3, arg4, arg5, arg6icon)
+            local iconId = arg6icon
             if type(arg4) == "table" then
                 local name = arg4.Name or arg4.name
-                arg5 = arg4.Description or arg4.description or arg4.Desc
-                if arg5 then
-                    arg4 = name
-                else
-                    arg5 = arg4.desc
-                    arg4 = name
-                end
+                iconId = arg4.Icon or arg4.icon or iconId
+                arg5 = arg4.Description or arg4.description or arg4.Desc or arg4.desc
+                arg4 = name
             end
             if t19.Options[arg4] then
                 return
             end
+            if type(iconId) == "number" then
+                iconId = "rbxassetid://" .. iconId
+            end
+            local hasIcon = iconId ~= nil and iconId ~= ""
+            local iconOffset = hasIcon and 22 or 0
             local b15 = arg5 and arg5 ~= ""
             local tween = index5:Create("Frame", {
                 Parent = t20.Holder.Instance, BackgroundTransparency = 1, Size = UDim2.new(1, 0, 0, 28), Position = UDim2.new(0, 0, 0, 0),
@@ -5475,13 +5477,23 @@ local function init(NameConfig)
             })
             local tween4 = index5:Create("TextLabel", {
                 Parent = tween2.Instance, FontFace = index3.Font, TextColor3 = Color3.fromRGB(240, 240, 240), TextTransparency = 0.5,
-                Text = "1", Size = UDim2.new(0, 24, 1, 0), BackgroundTransparency = 1, Position = UDim2.new(0, 26, 0, 0), ZIndex = 4,
+                Text = "1", Size = UDim2.new(0, 24, 1, 0), BackgroundTransparency = 1,
+                Position = UDim2.new(0, 26 + iconOffset, 0, 0), ZIndex = 4,
                 TextXAlignment = Enum.TextXAlignment.Center, TextSize = 13,
             })
             tween4:AddToTheme({ TextColor3 = "Text" })
+            local iconLabel = nil
+            if hasIcon then
+                iconLabel = index5:Create("ImageLabel", {
+                    Parent = tween2.Instance, Size = UDim2.new(0, 26, 0, 26), AnchorPoint = Vector2.new(0, 0.5),
+                    Image = iconId, BackgroundTransparency = 1, Position = UDim2.new(0, 26, 0.5, 0), ZIndex = 4,
+                    ScaleType = Enum.ScaleType.Fit,
+                })
+            end
             local tween5 = index5:Create("TextLabel", {
                 Parent = tween2.Instance, FontFace = index3.Font, TextColor3 = Color3.fromRGB(240, 240, 240), TextTransparency = 0, Text = arg4,
-                RichText = false, Size = UDim2.new(1, b15 and -84 or -60, 1, 0), BackgroundTransparency = 1, Position = UDim2.new(0, 54, 0, 0),
+                RichText = false, Size = UDim2.new(1, (b15 and -84 or -60) - iconOffset, 1, 0), BackgroundTransparency = 1,
+                Position = UDim2.new(0, 54 + iconOffset, 0, 0),
                 ZIndex = 4, TextXAlignment = Enum.TextXAlignment.Left, TextSize = 14,
             })
             tween5:AddToTheme({ TextColor3 = "Text" })
