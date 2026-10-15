@@ -50,10 +50,10 @@ local function init(NameConfig)
 
     index3.Theme = table.clone(({
         Preset = {
-            AccentGradient = Color3.fromRGB(183, 115, 115), ["Background 2"] = Color3.fromRGB(10, 10, 12),
+            AccentGradient = Color3.fromRGB(245, 114, 66), ["Background 2"] = Color3.fromRGB(10, 10, 12),
             Background = Color3.fromRGB(12, 12, 14), Text = Color3.fromRGB(235, 235, 235), Outline = Color3.fromRGB(25, 25, 28),
             ["Section Top"] = Color3.fromRGB(28, 26, 32), ["Section Background"] = Color3.fromRGB(10, 10, 12),
-            ["Section Background 2"] = Color3.fromRGB(14, 14, 16), Accent = Color3.fromRGB(255, 0, 0), Element = Color3.fromRGB(16, 16, 18),
+            ["Section Background 2"] = Color3.fromRGB(14, 14, 16), Accent = Color3.fromRGB(214, 200, 92), Element = Color3.fromRGB(16, 16, 18),
         },
         }).Preset)
     for _, v78 in index3.Folders do
