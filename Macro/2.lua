@@ -443,7 +443,7 @@ local function init(NameConfig)
     index3.Font = font
 
     index3.Holder = index5:Create("ScreenGui", {
-        Parent = gethui(), Name = "ReaperX", ZIndexBehavior = Enum.ZIndexBehavior.Global, DisplayOrder = 2, ResetOnSpawn = false,
+        Parent = gethui(), Name = "AxelX", ZIndexBehavior = Enum.ZIndexBehavior.Global, DisplayOrder = 2, ResetOnSpawn = false,
     })
 
     index3.UnusedHolder = index5:Create("ScreenGui", {
